@@ -2117,10 +2117,79 @@ function drawMainSim() {
         ctx.fillText(`B = ${B.toFixed(2)} T`, 15, H - 15);
     }
     
-    // FEM
+    // FEM Calculation
     let fem = -(flux - prevFlux) * 80;
     prevFlux = flux;
+
+    // ══════════════════════════════════════
+    // 💡 NUEVO: LÓGICA DE LA BOMBILLA 💡
+    // ══════════════════════════════════════
     
+    // Posición de la bombilla (Esquina superior derecha)
+    let bX = W - 60;
+    let bY = 60;
+    
+    // Calcular intensidad de luz basada en la FEM (valor absoluto)
+    // Se divide por 2.5 para ajustar la sensibilidad
+    let brightness = Math.min(Math.abs(fem) / 2.5, 1); 
+
+    ctx.save();
+    ctx.translate(bX, bY);
+
+    // 1. Efecto de Resplandor (Glow)
+    // Solo se activa si hay suficiente voltaje
+    if (brightness > 0.05) {
+        ctx.shadowBlur = 40 * brightness;
+        ctx.shadowColor = "#fde047"; // Amarillo brillante
+    }
+
+    // 2. Dibujar el Casquillo (Metal)
+    ctx.fillStyle = "#64748b"; // Gris metal
+    ctx.fillRect(-12, 18, 24, 16);
+    ctx.fillStyle = "#334155"; // Gris oscuro para las roscas
+    for(let i=0; i<3; i++) ctx.fillRect(-12, 20 + i*4, 24, 2);
+
+    // 3. Dibujar el Cristal de la bombilla
+    ctx.beginPath();
+    ctx.arc(0, 0, 22, 0, Math.PI * 2);
+    
+    // Color de relleno: Transición de Transparente a Amarillo Intenso
+    if (brightness > 0.05) {
+        ctx.fillStyle = `rgba(253, 224, 71, ${0.3 + brightness * 0.7})`; 
+        ctx.strokeStyle = "#eab308";
+    } else {
+        ctx.fillStyle = "rgba(255, 255, 255, 0.4)"; // Color vidrio apagado
+        ctx.strokeStyle = "#cbd5e1";
+    }
+    
+    ctx.fill();
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    // 4. Dibujar el Filamento (Zigzag)
+    ctx.beginPath();
+    ctx.moveTo(-8, 10);
+    ctx.lineTo(-5, 0);
+    ctx.lineTo(0, 5);
+    ctx.lineTo(5, 0);
+    ctx.lineTo(8, 10);
+    // Si brilla mucho, el filamento se ve blanco, si no, gris oscuro
+    ctx.strokeStyle = brightness > 0.6 ? "#ffffff" : "#475569";
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    // 5. Etiqueta de Texto debajo
+    ctx.shadowBlur = 0; // Quitar sombra para el texto
+    ctx.fillStyle = brightness > 0.1 ? "#b45309" : "#94a3b8";
+    ctx.font = "bold 12px Nunito";
+    ctx.textAlign = "center";
+    ctx.fillText(brightness > 0.1 ? "⚡ LUZ" : "OFF", 0, 50);
+
+    ctx.restore();
+    // ════════════ FIN BOMBILLA ════════════
+
+
+    // Datos para la gráfica
     simHistory.flux.push(flux * 30);
     simHistory.flux.shift();
     simHistory.fem.push(fem);
@@ -2130,7 +2199,7 @@ function drawMainSim() {
     document.getElementById('simFEMVal').textContent = (fem).toFixed(3);
     document.getElementById('simFEMVal').style.color = fem > 0 ? '#4ade80' : fem < 0 ? '#f87171' : '#94a3b8';
     
-    // Draw oscilloscope
+    // Draw oscilloscope (Graph)
     const cg = document.getElementById('cSimGraph');
     const ctg = cg.getContext('2d');
     const GW = cg.width, GH = cg.height;

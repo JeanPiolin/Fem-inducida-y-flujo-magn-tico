@@ -27,7 +27,7 @@
         body {
             font-family: 'Nunito', sans-serif;
             background: var(--bg-dark);
-            background-image: radial-gradient(ellipse at top left, #1e0a3c 0%, #0a0f1e 50%, #001a2e 100%);
+            background-image: radial-gradient(ellipse at top left, #000000 0%, #0a0f1e 50%, #001a2e 100%);
             color: var(--text-main);
             min-height: 100vh;
             display: flex;
@@ -315,7 +315,7 @@
 
     <!-- HEADER -->
     <div class="header">
-        <div class="header-logo">⚡ Tema 13 — FEM &amp; Flujo Magnético</div>
+        <div class="header-logo">🐥 Jhean Carlos Apaza Apaza —— FEM &amp; Flujo Magnético</div>
         <div class="progress-wrap"><div class="progress-fill" id="progressFill"></div></div>
         <div class="chapter-title" id="chapterTitle">Capítulo 1: Introducción</div>
         <div class="slide-counter"><span id="slideNum">1</span>/18</div>
@@ -329,8 +329,8 @@
         ═════════════════════════════════════════════════ -->
         <div class="slide active" id="slide0">
             <div style="text-align:center; padding-top:10px;">
-                <span style="font-size:6em;" class="float-anim">🚀</span>
-                <h1>¡Bienvenidos a la<br>Clase Magistral!</h1>
+                <span style="font-size:6em;" class="float-anim">🐥</span>
+                <h1>¡Bienvenidos al<br>Tema 13!</h1>
                 <p class="subtitle" style="font-size:1.4em; color:var(--secondary); font-weight:900;">FEM Inducida &amp; Flujo Magnético</p>
                 <p class="subtitle">¡Hoy vamos a aprender algo INCREÍBLE: cómo convertir magnetismo en electricidad!</p>
             </div>
@@ -828,40 +828,68 @@
 
                 <div>
                     <h3 style="color: var(--secondary); margin-bottom: 12px;">Simulador Interactivo</h3>
-                    <div class="interactive-panel">
+<div class="interactive-panel">
                         <div class="control-row" style="flex-direction: column; gap: 12px;">
                             <div class="ctrl">
-                                <label>B (Campo): <span id="lB3">2.0</span> T</label>
-                                <input type="range" id="rB3" min="0.5" max="5" step="0.1" value="2" oninput="updateFluxCalc()">
+                                <label>B (Campo): 
+                                    <span style="display:flex; align-items:center;">
+                                        <input type="number" id="nB3" min="0" max="10" step="0.5" value="2.0" 
+                                        style="width:85px; text-align:right; font-family:'JetBrains Mono'; border:1px solid #cbd5e1; border-radius:5px; padding:2px 5px; color:var(--primary); font-weight:bold; outline:none;"
+                                        oninput="document.getElementById('rB3').value=this.value; updateFluxCalc();"> T
+                                    </span>
+                                </label>
+                                <input type="range" id="rB3" min="0.5" max="5" step="0.1" value="2" 
+                                oninput="document.getElementById('nB3').value=this.value; updateFluxCalc();">
                             </div>
+                            
                             <div class="ctrl">
-                                <label>A (Área): <span id="lA3">0.5</span> m²</label>
-                                <input type="range" id="rA3" min="0.1" max="2" step="0.1" value="0.5" oninput="updateFluxCalc()">
+                                <label>A (Área): 
+                                    <span style="display:flex; align-items:center;">
+                                        <input type="number" id="nA3" min="0" max="10" step="0.5" value="0.5" 
+                                        style="width:85px; text-align:right; font-family:'JetBrains Mono'; border:1px solid #cbd5e1; border-radius:5px; padding:2px 5px; color:var(--primary); font-weight:bold; outline:none;"
+                                        oninput="document.getElementById('rA3').value=this.value; updateFluxCalc();"> m²
+                                    </span>
+                                </label>
+                                <input type="range" id="rA3" min="0.1" max="2" step="0.1" value="0.5" 
+                                oninput="document.getElementById('nA3').value=this.value; updateFluxCalc();">
                             </div>
+                            
                             <div class="ctrl">
-                                <label>N (Vueltas): <span id="lN3">1</span></label>
-                                <input type="range" id="rN3" min="1" max="20" step="1" value="1" oninput="updateFluxCalc()">
+                                <label>N (Vueltas): 
+                                    <span style="display:flex; align-items:center;">
+                                        <input type="number" id="nN3" min="1" max="100" step="1" value="1" 
+                                        style="width:85px; text-align:right; font-family:'JetBrains Mono'; border:1px solid #cbd5e1; border-radius:5px; padding:2px 5px; color:var(--primary); font-weight:bold; outline:none;"
+                                        oninput="document.getElementById('rN3').value=this.value; updateFluxCalc();">
+                                    </span>
+                                </label>
+                                <input type="range" id="rN3" min="1" max="20" step="1" value="1" 
+                                oninput="document.getElementById('nN3').value=this.value; updateFluxCalc();">
                             </div>
+                            
                             <div class="ctrl">
-                                <label>θ (Ángulo): <span id="lTheta3">0°</span></label>
-                                <input type="range" id="rTheta3" min="0" max="180" step="1" value="0" oninput="updateFluxCalc()">
+                                <label>θ (Ángulo): 
+                                    <span style="display:flex; align-items:center;">
+                                        <input type="number" id="nTheta3" min="0" max="360" step="1" value="0" 
+                                        style="width:85px; text-align:right; font-family:'JetBrains Mono'; border:1px solid #cbd5e1; border-radius:5px; padding:2px 5px; color:var(--primary); font-weight:bold; outline:none;"
+                                        oninput="document.getElementById('rTheta3').value=this.value; updateFluxCalc();"> °
+                                    </span>
+                                </label>
+                                <input type="range" id="rTheta3" min="0" max="180" step="1" value="0" 
+                                oninput="document.getElementById('nTheta3').value=this.value; updateFluxCalc();">
                             </div>
                         </div>
+
                         <div style="margin-top: 15px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
                             <div class="readout">
-                                <div class="val" id="cosVal3" style="color: var(--cyan);">1.000</div>
+                                <div class="val" id="cosVal3" style="color: var(--cyan); font-size: 1.6em;">1.00000</div>
                                 <div class="lbl">cos(θ)</div>
                             </div>
                             <div class="readout">
-                                <div class="val" id="fluxResult3" style="color: #4ade80;">1.000</div>
+                                <div class="val" id="fluxResult3" style="color: #4ade80; font-size: 1.6em;">1.00000</div>
                                 <div class="lbl">Φ<sub>B</sub> (Wb)</div>
                             </div>
                         </div>
                         <canvas id="cFluxBar" width="400" height="70" style="margin-top: 12px; border: none; box-shadow: none; background: transparent;"></canvas>
-                    </div>
-                    
-                    <div class="warning-box" style="font-size: 1em; margin-top: 10px;">
-                        <b>⚠️ Flujo puede ser NEGATIVO:</b> Si θ > 90°, cos(θ) se vuelve negativo. El flujo negativo simplemente significa que las líneas atraviesan la superficie <b>en sentido opuesto</b>. Esto tendrá consecuencias en el signo de la FEM.
                     </div>
                 </div>
             </div>
@@ -1094,29 +1122,57 @@
                         <div class="panel-title">⚡ Calculadora de FEM Inducida</div>
                         <div style="display: flex; flex-direction: column; gap: 12px;">
                             <div class="ctrl">
-                                <label>Φ inicial: <span id="lPhi1">5.0</span> Wb</label>
-                                <input type="range" id="rPhi1" min="0" max="20" step="0.5" value="5" oninput="updateFEMCalc()">
+                                <label>Φ inicial: 
+                                    <span style="display:flex; align-items:center;">
+                                        <input type="number" id="nPhi1" min="0" max="100" step="0.5" value="5.0" 
+                                        style="width:85px; text-align:right; font-family:'JetBrains Mono'; border:1px solid #cbd5e1; border-radius:5px; padding:2px 5px; color:var(--primary); font-weight:bold; outline:none;"
+                                        oninput="document.getElementById('rPhi1').value=this.value; updateFEMCalc();"> Wb
+                                    </span>
+                                </label>
+                                <input type="range" id="rPhi1" min="0" max="20" step="0.5" value="5" oninput="document.getElementById('nPhi1').value=this.value; updateFEMCalc()">
                             </div>
+                            
                             <div class="ctrl">
-                                <label>Φ final: <span id="lPhi2">0.0</span> Wb</label>
-                                <input type="range" id="rPhi2" min="0" max="20" step="0.5" value="0" oninput="updateFEMCalc()">
+                                <label>Φ final: 
+                                    <span style="display:flex; align-items:center;">
+                                        <input type="number" id="nPhi2" min="0" max="100" step="0.5" value="0.0" 
+                                        style="width:85px; text-align:right; font-family:'JetBrains Mono'; border:1px solid #cbd5e1; border-radius:5px; padding:2px 5px; color:var(--primary); font-weight:bold; outline:none;"
+                                        oninput="document.getElementById('rPhi2').value=this.value; updateFEMCalc();"> Wb
+                                    </span>
+                                </label>
+                                <input type="range" id="rPhi2" min="0" max="20" step="0.5" value="0" oninput="document.getElementById('nPhi2').value=this.value; updateFEMCalc()">
                             </div>
+                            
                             <div class="ctrl">
-                                <label>Δt: <span id="lDt">1.0</span> s</label>
-                                <input type="range" id="rDt" min="0.1" max="5" step="0.1" value="1.0" oninput="updateFEMCalc()">
+                                <label>Δt: 
+                                    <span style="display:flex; align-items:center;">
+                                        <input type="number" id="nDt" min="0.1" max="10" step="0.1" value="1.0" 
+                                        style="width:85px; text-align:right; font-family:'JetBrains Mono'; border:1px solid #cbd5e1; border-radius:5px; padding:2px 5px; color:var(--primary); font-weight:bold; outline:none;"
+                                        oninput="document.getElementById('rDt').value=this.value; updateFEMCalc();"> s
+                                    </span>
+                                </label>
+                                <input type="range" id="rDt" min="0.1" max="5" step="0.1" value="1.0" oninput="document.getElementById('nDt').value=this.value; updateFEMCalc()">
                             </div>
+                            
                             <div class="ctrl">
-                                <label>N (vueltas): <span id="lNfem">1</span></label>
-                                <input type="range" id="rNfem" min="1" max="100" step="1" value="1" oninput="updateFEMCalc()">
+                                <label>N (vueltas): 
+                                    <span style="display:flex; align-items:center;">
+                                        <input type="number" id="nNfem" min="1" max="500" step="1" value="1" 
+                                        style="width:85px; text-align:right; font-family:'JetBrains Mono'; border:1px solid #cbd5e1; border-radius:5px; padding:2px 5px; color:var(--primary); font-weight:bold; outline:none;"
+                                        oninput="document.getElementById('rNfem').value=this.value; updateFEMCalc();">
+                                    </span>
+                                </label>
+                                <input type="range" id="rNfem" min="1" max="100" step="1" value="1" oninput="document.getElementById('nNfem').value=this.value; updateFEMCalc()">
                             </div>
                         </div>
+
                         <div style="margin-top: 15px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
                             <div class="readout">
-                                <div class="val" id="deltaPhiVal" style="color: var(--cyan);">−5.0</div>
+                                <div class="val" id="deltaPhiVal" style="color: var(--cyan); font-size: 1.6em;">−5.00000</div>
                                 <div class="lbl">ΔΦ (Wb)</div>
                             </div>
                             <div class="readout">
-                                <div class="val" id="femResult" style="color: #f87171;">+5.0</div>
+                                <div class="val" id="femResult" style="color: #f87171; font-size: 1.6em;">+5.00000</div>
                                 <div class="lbl">ε (Voltios)</div>
                             </div>
                         </div>
@@ -1599,60 +1655,197 @@ function setFieldType(t) {
 }
 
 function drawField() {
-    if (current !== 5) { requestAnimationFrame(drawField); return; }
-    fieldT += 0.02;
+    // 1. Verificación de seguridad
+    if (current !== 5) {
+        requestAnimationFrame(drawField);
+        return;
+    }
+
     const c = document.getElementById('cField');
+    if (!c) return;
     const ctx = c.getContext('2d');
     const W = c.width, H = c.height;
-    ctx.clearRect(0, 0, W, H);
-    const B = parseInt(document.getElementById('rFieldB').value);
-    document.getElementById('fieldBVal').textContent = B.toFixed(1) + ' T';
 
+    // 2. Limpiar
+    ctx.clearRect(0, 0, W, H);
+    // Fondo muy suave para que resalte el cian
+    ctx.fillStyle = '#0f172a';
+    ctx.fillRect(0, 0, W, H);
+
+    fieldT += 0.02; // Velocidad de animación
+    
+    // Obtener intensidad B del slider
+    const slider = document.getElementById('rFieldB');
+    const B = slider ? parseFloat(slider.value) : 3;
+    
+    // Actualizar etiqueta de texto
+    const valLabel = document.getElementById('fieldBVal');
+    if(valLabel) valLabel.textContent = B.toFixed(1) + ' T';
+
+    // CENTRO DE LA PANTALLA
+    const cx = W / 2;
+    const cy = H / 2;
+
+    // --- MODO 1: CAMPO UNIFORME ---
     if (fieldType === 'uniform') {
-        // Uniform field arrows
-        ctx.strokeStyle = '#06b6d4';
-        ctx.lineWidth = 2 + B * 0.4;
-        ctx.fillStyle = '#06b6d4';
-        for (let y = 30; y < H - 20; y += 35) {
-            for (let x = 20; x < W - 30; x += 50) {
-                drawArrow(ctx, x, y, x + 35, y, 10);
-            }
-        }
-    } else if (fieldType === 'bar') {
-        // Bar magnet
-        ctx.fillStyle = '#1e293b'; ctx.fillRect(30, H/2-25, 70, 50);
-        ctx.fillStyle = '#ef4444'; ctx.fillRect(100, H/2-25, 70, 50);
-        ctx.fillStyle = 'white'; ctx.font = 'bold 22px Arial';
-        ctx.fillText('S', 55, H/2+8); ctx.fillText('N', 125, H/2+8);
-        // Field lines
-        for (let i = 0; i < B * 2 + 2; i++) {
-            let t2 = i / (B * 2 + 1);
-            let y0 = H/2 - 30 + t2 * 60;
-            ctx.strokeStyle = `rgba(6,182,212,${0.3 + t2 * 0.5})`;
+        const gap = 40;
+        const rows = 4 + B; // Más B = más líneas
+        
+        ctx.save();
+        // Centrar las líneas verticalmente
+        const totalH = (rows - 1) * gap;
+        const startY = (H - totalH) / 2;
+
+        for (let i = 0; i < rows; i++) {
+            let y = startY + i * gap;
+            
+            // Línea recta
+            ctx.strokeStyle = '#06b6d4'; // Cyan
             ctx.lineWidth = 2;
             ctx.beginPath();
-            ctx.moveTo(170, y0);
-            let ctrl1x = 300 + Math.sin(fieldT + i) * 10;
-            ctx.bezierCurveTo(ctrl1x, y0 - 60 + i * 10, ctrl1x + 60, y0 - 60 + i * 10, W - 10, H/2);
+            ctx.moveTo(20, y);
+            ctx.lineTo(W - 20, y);
             ctx.stroke();
+
+            // Partícula animada (flecha) viajando de Izq a Der
+            let t = (fieldT * 0.5 + i * 0.2) % 1;
+            let px = 20 + t * (W - 40);
+
+            // Dibujar cabeza de flecha
+            ctx.fillStyle = '#67e8f9';
+            ctx.beginPath();
+            ctx.moveTo(px, y);
+            ctx.lineTo(px - 8, y - 4);
+            ctx.lineTo(px - 8, y + 4);
+            ctx.fill();
         }
-    } else {
-        // Loop
-        ctx.strokeStyle = '#f59e0b'; ctx.lineWidth = 6;
-        ctx.beginPath(); ctx.arc(W/2, H/2, 60, 0, Math.PI*2); ctx.stroke();
-        // Circular field lines
-        for (let r = 30; r <= 180; r += 40/B*3) {
-            ctx.strokeStyle = `rgba(6,182,212,${0.6 - r/300})`;
-            ctx.lineWidth = 1.5;
-            ctx.beginPath(); ctx.arc(W/2, H/2, r, 0, Math.PI*2); ctx.stroke();
-            // Arrows
-            let ang = fieldT * 2;
-            let ax = W/2 + r * Math.cos(ang);
-            let ay = H/2 + r * Math.sin(ang);
-            ctx.fillStyle = '#06b6d4';
-            ctx.beginPath(); ctx.arc(ax, ay, 4, 0, Math.PI*2); ctx.fill();
+        ctx.restore();
+    } 
+    
+    // --- MODO 2: IMÁN DE BARRA (Dipolo) ---
+    else if (fieldType === 'bar') {
+        const mw = 140; 
+        const mh = 40;
+        
+        // Dibujar líneas de campo (Curvas Dipolares)
+        // Las líneas salen del Norte (Der) y van al Sur (Izq)
+        const lines = 3 + Math.floor(B * 1.5); // Cantidad de líneas según intensidad
+        
+        ctx.save();
+        // Clip para que las líneas no se dibujen sobre el imán
+        ctx.beginPath();
+        ctx.rect(0, 0, W, H);
+        ctx.rect(cx - mw/2, cy - mh/2, mw, mh); // Hueco del imán
+        ctx.clip("evenodd");
+
+        for (let side = -1; side <= 1; side += 2) { // Arriba (-1) y Abajo (1)
+            if (side === 0) continue;
+            
+            for (let i = 1; i <= lines; i++) {
+                let amp = i * 25; // Amplitud del arco
+                
+                let xStart = cx + mw/2 - 5; // Sale del N
+                let xEnd = cx - mw/2 + 5;   // Entra al S
+                
+                // Puntos de control Bézier para hacer el arco
+                let cp1x = cx + mw/2 + amp*1.5;
+                let cp1y = cy + side * amp;
+                let cp2x = cx - mw/2 - amp*1.5;
+                let cp2y = cy + side * amp;
+
+                // Dibujar línea
+                ctx.beginPath();
+                ctx.moveTo(xStart, cy);
+                ctx.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, xEnd, cy);
+                ctx.strokeStyle = `rgba(6, 182, 212, ${0.8 - i/10})`; // Cyan desvaneciéndose
+                ctx.lineWidth = 2;
+                ctx.stroke();
+
+                // Animar partícula sobre la línea (N -> S)
+                let t = (fieldT * 0.4 + i * 0.1) % 1;
+                // Ecuación Bezier cúbica manual para ubicar el punto
+                let u = 1 - t;
+                let tt = t*t; let uu = u*u; let uuu = uu*u; let ttt = tt*t;
+                
+                let px = uuu*xStart + 3*uu*t*cp1x + 3*u*tt*cp2x + ttt*xEnd;
+                let py = uuu*cy + 3*uu*t*cp1y + 3*u*tt*cp2y + ttt*cy;
+
+                ctx.fillStyle = '#bef264'; // Verde lima brillante
+                ctx.beginPath(); ctx.arc(px, py, 3, 0, Math.PI*2); ctx.fill();
+            }
         }
+        ctx.restore();
+
+        // Dibujar el IMÁN
+        // Sur (Izq)
+        ctx.fillStyle = '#334155'; ctx.fillRect(cx - mw/2, cy - mh/2, mw/2, mh);
+        ctx.fillStyle = 'white'; ctx.font = 'bold 16px Arial'; ctx.fillText('S', cx - mw/4 - 5, cy + 6);
+        // Norte (Der)
+        ctx.fillStyle = '#ef4444'; ctx.fillRect(cx, cy - mh/2, mw/2, mh);
+        ctx.fillText('N', cx + mw/4 - 5, cy + 6);
+    } 
+    
+    // --- MODO 3: ESPIRA (LOOP) ---
+    else if (fieldType === 'loop') {
+        // Vista de corte lateral de una espira
+        // Representamos la espira como dos círculos pequeños (el cable cortado)
+        const radius = 60; // Radio de la espira
+        
+        // Dibujar los "cables" (corte transversal)
+        // Arriba: Corriente sale (punto)
+        ctx.beginPath(); ctx.arc(cx, cy - radius, 8, 0, Math.PI*2);
+        ctx.fillStyle = '#f59e0b'; ctx.fill(); // Cobre
+        ctx.fillStyle = '#000'; ctx.beginPath(); ctx.arc(cx, cy - radius, 2, 0, Math.PI*2); ctx.fill(); // Punto
+        
+        // Abajo: Corriente entra (X)
+        ctx.beginPath(); ctx.arc(cx, cy + radius, 8, 0, Math.PI*2);
+        ctx.fillStyle = '#f59e0b'; ctx.fill();
+        ctx.strokeStyle = '#000'; ctx.beginPath(); 
+        ctx.moveTo(cx-3, cy+radius-3); ctx.lineTo(cx+3, cy+radius+3);
+        ctx.moveTo(cx+3, cy+radius-3); ctx.lineTo(cx-3, cy+radius+3); ctx.stroke();
+
+        // Líneas de campo (Toroidales alrededor de los cables)
+        // Se parecen a dos imanes opuestos o el campo de una barra pero "pasando por el centro"
+        
+        const density = 2 + Math.ceil(B); 
+
+        // 1. Línea central recta
+        ctx.strokeStyle = '#06b6d4'; ctx.lineWidth = 2;
+        ctx.beginPath(); ctx.moveTo(cx - 150, cy); ctx.lineTo(cx + 150, cy); ctx.stroke();
+        
+        // 2. Líneas envolventes
+        for (let i = 1; i <= density; i++) {
+            let offset = i * 20;
+            
+            // Elipse alrededor del cable superior
+            ctx.beginPath();
+            ctx.ellipse(cx, cy - radius, offset, offset * 0.8, 0, 0, Math.PI*2);
+            ctx.strokeStyle = `rgba(6, 182, 212, ${0.6 - i * 0.1})`;
+            ctx.stroke();
+
+            // Animar partícula girando (Regla mano derecha)
+            let ang = -fieldT * 2 + i; // Giro antihorario arriba
+            let px = cx + offset * Math.cos(ang);
+            let py = (cy - radius) + offset * 0.8 * Math.sin(ang);
+            ctx.fillStyle = '#bef264'; ctx.beginPath(); ctx.arc(px, py, 2, 0, Math.PI*2); ctx.fill();
+
+            // Elipse alrededor del cable inferior
+            ctx.beginPath();
+            ctx.ellipse(cx, cy + radius, offset, offset * 0.8, 0, 0, Math.PI*2);
+            ctx.stroke();
+            
+            // Animar partícula girando
+            let ang2 = fieldT * 2 + i; // Giro horario abajo
+            let px2 = cx + offset * Math.cos(ang2);
+            let py2 = (cy + radius) + offset * 0.8 * Math.sin(ang2);
+            ctx.fillStyle = '#bef264'; ctx.beginPath(); ctx.arc(px2, py2, 2, 0, Math.PI*2); ctx.fill();
+        }
+        
+        // Texto explicativo
+        ctx.fillStyle = '#94a3b8'; ctx.font = '12px Nunito'; ctx.textAlign = 'center';
+        ctx.fillText("Vista de Corte Lateral (Cable cortado)", cx, H - 10);
     }
+
     requestAnimationFrame(drawField);
 }
 
@@ -1760,23 +1953,32 @@ drawFluxConcept();
 // SLIDE 3: FLUX FORMULA CALCULATOR
 // ═══════════════════════════════════════════════
 function updateFluxCalc() {
-    let B = parseFloat(document.getElementById('rB3').value);
-    let A = parseFloat(document.getElementById('rA3').value);
-    let N = parseInt(document.getElementById('rN3').value);
-    let theta = parseInt(document.getElementById('rTheta3').value) * Math.PI / 180;
+    // 1. Obtener valores de los inputs
+    // Usamos parseFloat para permitir decimales manuales aunque el 'step' de la flecha sea grande
+    let B = parseFloat(document.getElementById('nB3').value);
+    let A = parseFloat(document.getElementById('nA3').value);
+    let N = parseFloat(document.getElementById('nN3').value);
+    let theta = parseFloat(document.getElementById('nTheta3').value);
     
-    document.getElementById('lB3').textContent = B.toFixed(1);
-    document.getElementById('lA3').textContent = A.toFixed(1);
-    document.getElementById('lN3').textContent = N;
-    document.getElementById('lTheta3').textContent = parseInt(document.getElementById('rTheta3').value) + '°';
-    
-    let cosT = Math.cos(theta);
+    // 2. Validación para evitar errores en edición
+    if (isNaN(B)) B = 0;
+    if (isNaN(A)) A = 0;
+    if (isNaN(N)) N = 0;
+    if (isNaN(theta)) theta = 0;
+
+    // 3. Cálculos
+    let rad = theta * Math.PI / 180;
+    let cosT = Math.cos(rad);
     let flux = N * B * A * cosT;
     
-    document.getElementById('cosVal3').textContent = cosT.toFixed(3);
-    document.getElementById('fluxResult3').textContent = flux.toFixed(3);
-    document.getElementById('fluxResult3').style.color = flux >= 0 ? '#4ade80' : '#f87171';
+    // 4. Mostrar RESULTADOS con 5 decimales (precisión alta)
+    document.getElementById('cosVal3').textContent = cosT.toFixed(5);
     
+    const resEl = document.getElementById('fluxResult3');
+    resEl.textContent = flux.toFixed(5);
+    resEl.style.color = flux >= 0 ? '#4ade80' : '#f87171';
+    
+    // 5. Barra visual
     drawFluxBar(flux, N * B * A);
 }
 
@@ -1822,97 +2024,202 @@ updateFluxCalc();
 // ═══════════════════════════════════════════════
 // SLIDE 5: ANGLE DETAIL
 // ═══════════════════════════════════════════════
+// Función para actualizar valores desde el slider
 function updateAngleDetail(v) {
-    let angle = parseInt(v);
-    document.getElementById('lAngleDetail').textContent = angle + '°';
-    let cosV = Math.cos(angle * Math.PI / 180);
-    let flux = 10 * cosV;
-    document.getElementById('adAngle').textContent = angle + '°';
-    document.getElementById('adCos').textContent = cosV.toFixed(3);
-    document.getElementById('adFlux').textContent = flux.toFixed(2);
-    drawAngleDetail();
+    let angleDeg = parseInt(v);
+    
+    // 1. Actualizar textos en la interfaz
+    const lAngle = document.getElementById('lAngleDetail');
+    if(lAngle) lAngle.textContent = angleDeg + '°';
+    
+    // Cálculos físicos
+    let rad = angleDeg * Math.PI / 180;
+    let cosV = Math.cos(rad);
+    let flux = 10 * cosV; // Asumimos Flujo Máximo = 10 para el ejemplo
+    
+    // 2. Actualizar la tabla de datos
+    const valAngle = document.getElementById('adAngle');
+    const valCos = document.getElementById('adCos');
+    const valFlux = document.getElementById('adFlux');
+    
+    if(valAngle) valAngle.textContent = angleDeg + '°';
+    if(valCos) valCos.textContent = cosV.toFixed(3);
+    if(valFlux) valFlux.textContent = flux.toFixed(2);
+    
+    // Color dinámico para el flujo
+    if(valFlux) valFlux.style.color = flux >= 0 ? '#f59e0b' : '#ef4444';
+
+    // 3. Redibujar la simulación
+    drawAngleDetail(rad);
 }
 
-function drawAngleDetail() {
+// Función principal de dibujo (CORREGIDA: VISTA LATERAL CLARA)
+function drawAngleDetail(rad) {
+    // Si la función se llama sin argumentos (al inicio), leer del slider
+    if (rad === undefined) {
+        let el = document.getElementById('rAngleDetail');
+        let val = el ? el.value : 0;
+        rad = val * Math.PI / 180;
+    }
+
     const c = document.getElementById('cAngleDetail');
     if (!c) return;
     const ctx = c.getContext('2d');
     const W = c.width, H = c.height;
+    
+    // A. Limpiar Lienzo
     ctx.clearRect(0, 0, W, H);
-    
-    let angle = parseInt(document.getElementById('rAngleDetail')?.value || 0) * Math.PI / 180;
-    let cosT = Math.cos(angle);
-    
-    ctx.fillStyle = '#f0f9ff';
+    ctx.fillStyle = '#f8fafc'; // Fondo claro limpio
     ctx.fillRect(0, 0, W, H);
-    
-    // Field lines
-    for (let i = 0; i < 7; i++) {
-        let y = 30 + i * 45;
-        ctx.strokeStyle = '#06b6d4';
-        ctx.lineWidth = 2;
-        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
-        // Arrow
-        ctx.fillStyle = '#06b6d4';
-        drawArrow(ctx, W - 50, y, W - 5, y, 8);
+
+    const cx = W / 2;
+    const cy = H / 2 - 20; // Centro desplazado un poco arriba
+    const vectorLen = 120;
+
+    // B. Dibujar Líneas de Campo (Fondo estático horizontal)
+    ctx.strokeStyle = '#bae6fd'; // Azul muy pálido
+    ctx.lineWidth = 2;
+    for (let i = -4; i <= 4; i++) {
+        let y = cy + i * 40;
+        if(y > 0 && y < H-50) {
+            ctx.beginPath();
+            ctx.moveTo(0, y);
+            ctx.lineTo(W, y);
+            ctx.stroke();
+            // Decoración de flechas al final
+            ctx.beginPath();
+            ctx.moveTo(W-15, y-5); ctx.lineTo(W-5, y); ctx.lineTo(W-15, y+5);
+            ctx.stroke();
+        }
     }
-    
-    // The loop
-    ctx.save();
-    ctx.translate(W * 0.55, H/2);
-    
-    let loopH = 85;
-    let loopW = Math.abs(cosT) * 50;
-    
-    ctx.strokeStyle = '#f59e0b'; ctx.lineWidth = 5;
-    if (loopW < 3) {
-        ctx.beginPath(); ctx.moveTo(0, -loopH); ctx.lineTo(0, loopH); ctx.stroke();
-    } else {
+
+    // C. Configuración del Ángulo visual
+    // En canvas Y crece hacia abajo. Para rotar "hacia arriba" usamos negativo.
+    let nx = Math.cos(-rad) * vectorLen;
+    let ny = Math.sin(-rad) * vectorLen;
+
+    // D. Dibujar Sector del Ángulo (Relleno rojo suave)
+    if (Math.abs(rad) > 0.01) {
         ctx.beginPath();
-        ctx.ellipse(0, 0, loopW, loopH, 0, 0, Math.PI * 2);
-        ctx.stroke();
+        ctx.moveTo(cx, cy);
+        ctx.arc(cx, cy, 60, 0, -rad, true); 
+        ctx.fillStyle = 'rgba(239, 68, 68, 0.2)'; 
+        ctx.fill();
+        ctx.strokeStyle = '#ef4444'; ctx.lineWidth = 1; ctx.stroke();
+
+        // Etiqueta θ
+        ctx.fillStyle = '#ef4444';
+        ctx.font = 'bold 20px Nunito';
+        let midRad = -rad / 2;
+        ctx.fillText("θ", cx + 70 * Math.cos(midRad), cy + 70 * Math.sin(midRad));
     }
+
+    // E. Vector B (Horizontal - Referencia)
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.lineTo(cx + vectorLen + 40, cy);
+    ctx.strokeStyle = '#06b6d4'; // Cyan
+    ctx.lineWidth = 4;
+    ctx.stroke();
     
-    // Normal vector
-    ctx.strokeStyle = '#8b5cf6'; ctx.lineWidth = 3;
-    ctx.setLineDash([5, 4]);
-    let nx = 80 * Math.sin(angle);
-    let ny = -80 * Math.cos(angle);
-    ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(nx, ny); ctx.stroke();
-    ctx.setLineDash([]);
-    ctx.fillStyle = '#8b5cf6'; ctx.font = 'bold 16px serif';
-    ctx.fillText('n̂', nx + 5, ny - 5);
+    // Punta flecha B
+    ctx.fillStyle = '#06b6d4'; 
+    ctx.beginPath();
+    ctx.moveTo(cx + vectorLen + 40, cy);
+    ctx.lineTo(cx + vectorLen + 30, cy - 6);
+    ctx.lineTo(cx + vectorLen + 30, cy + 6);
+    ctx.fill();
+    ctx.font = 'bold 18px Nunito';
+    ctx.fillText("B (Campo)", cx + vectorLen + 45, cy + 5);
+
+    // F. Vector Normal (n) - ¡Este es el que gira!
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.lineTo(cx + nx, cy + ny);
+    ctx.strokeStyle = '#8b5cf6'; // Violeta
+    ctx.lineWidth = 4;
+    ctx.setLineDash([8, 5]); // Línea punteada
+    ctx.stroke();
+    ctx.setLineDash([]); // Restaurar línea sólida
+
+    // Punta de flecha Normal
+    let angHead = Math.atan2(ny, nx);
+    ctx.beginPath();
+    ctx.moveTo(cx + nx, cy + ny);
+    ctx.lineTo(cx + nx - 15 * Math.cos(angHead - Math.PI/6), cy + ny - 15 * Math.sin(angHead - Math.PI/6));
+    ctx.lineTo(cx + nx - 15 * Math.cos(angHead + Math.PI/6), cy + ny - 15 * Math.sin(angHead + Math.PI/6));
+    ctx.fillStyle = '#8b5cf6';
+    ctx.fill();
+    ctx.fillText("n̂ (Normal)", cx + nx + 10, cy + ny - 10);
+
+    // G. La Espira (Vista de Perfil)
+    // La espira siempre es PERPENDICULAR a la normal.
+    let loopAng = -rad + Math.PI / 2;
+    let loopSize = 140; 
     
-    // B vector
-    ctx.strokeStyle = '#06b6d4'; ctx.lineWidth = 3;
-    ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(80, 0); ctx.stroke();
-    ctx.fillStyle = '#06b6d4'; ctx.font = 'bold 16px serif';
-    ctx.fillText('B', 85, 5);
-    
-    // Angle arc
-    if (angle > 0.05 && angle < Math.PI - 0.05) {
-        ctx.strokeStyle = '#ef4444'; ctx.lineWidth = 2;
-        ctx.beginPath();
-        let startA = -Math.PI/2 + (Math.PI - angle) / 2;
-        ctx.arc(0, 0, 35, -angle + 0.05, -0.05);
-        ctx.stroke();
-        let midA = -angle/2;
-        ctx.fillStyle = '#ef4444'; ctx.font = 'bold 14px Nunito';
-        ctx.fillText('θ', 40 * Math.cos(midA) - 5, 40 * Math.sin(midA) + 5);
-    }
-    
-    ctx.restore();
-    
-    // cos(θ) visual bar
-    let pct = Math.abs(cosT);
+    let lx1 = cx + (loopSize/2) * Math.cos(loopAng);
+    let ly1 = cy + (loopSize/2) * Math.sin(loopAng);
+    let lx2 = cx - (loopSize/2) * Math.cos(loopAng);
+    let ly2 = cy - (loopSize/2) * Math.sin(loopAng);
+
+    ctx.beginPath();
+    ctx.moveTo(lx1, ly1);
+    ctx.lineTo(lx2, ly2);
+    ctx.strokeStyle = '#f59e0b'; // Naranja brillante
+    ctx.lineWidth = 10;
+    ctx.lineCap = 'round';
+    ctx.stroke();
+
+    // Detalles en los extremos
+    ctx.fillStyle = '#78350f';
+    ctx.beginPath(); ctx.arc(lx1, ly1, 4, 0, Math.PI*2); ctx.fill();
+    ctx.beginPath(); ctx.arc(lx2, ly2, 4, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = '#f59e0b'; ctx.font = '14px Nunito';
+    ctx.fillText("Espira", lx1 + 10, ly1);
+
+    // H. Barra Visual del Coseno (Abajo)
+    let barY = H - 50;
+    let barW = 300;
+    let barX = (W - barW) / 2;
+    let centerBar = barX + barW / 2;
+    let cosVal = Math.cos(rad);
+
+    // Fondo barra
     ctx.fillStyle = '#e2e8f0';
-    ctx.roundRect(10, H - 30, W - 20, 18, 5);
+    ctx.beginPath();
+    if (ctx.roundRect) ctx.roundRect(barX, barY, barW, 24, 12);
+    else ctx.rect(barX, barY, barW, 24); // Fallback para navegadores viejos
     ctx.fill();
-    ctx.fillStyle = cosT >= 0 ? '#3b82f6' : '#ef4444';
-    ctx.roundRect(10, H - 30, (W - 20) * pct, 18, 5);
+
+    // Línea central
+    ctx.strokeStyle = '#64748b'; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(centerBar, barY-5); ctx.lineTo(centerBar, barY+29); ctx.stroke();
+
+    // Llenado dinámico
+    let fillW = cosVal * (barW / 2); 
+    ctx.fillStyle = cosVal >= 0 ? '#4ade80' : '#f87171';
+    
+    ctx.beginPath();
+    let r = 10;
+    // Dibujo manual del rectángulo redondeado para evitar errores con width negativo
+    if (fillW >= 0) {
+        if(ctx.roundRect) ctx.roundRect(centerBar, barY + 2, fillW, 20, [0, 10, 10, 0]);
+        else ctx.fillRect(centerBar, barY+2, fillW, 20);
+    } else {
+        if(ctx.roundRect) ctx.roundRect(centerBar + fillW, barY + 2, -fillW, 20, [10, 0, 0, 10]);
+        else ctx.fillRect(centerBar+fillW, barY+2, -fillW, 20);
+    }
     ctx.fill();
-    ctx.fillStyle = '#1e293b'; ctx.font = 'bold 12px Nunito';
-    ctx.fillText(`cos(${Math.round(angle * 180/Math.PI)}°) = ${cosT.toFixed(3)}  →  Φ = ${(10*cosT).toFixed(2)} Wb`, 12, H - 36);
+
+    // Textos de la barra
+    ctx.fillStyle = '#1e293b'; ctx.font = 'bold 16px Nunito'; ctx.textAlign = 'center';
+    ctx.fillText(`cos(${parseInt(rad*180/Math.PI)}°) = ${cosVal.toFixed(3)}`, cx, barY - 10);
+    
+    ctx.fillStyle = '#64748b'; ctx.font = '12px monospace';
+    ctx.fillText("-1", barX, barY + 40);
+    ctx.fillText("0", centerBar, barY + 40);
+    ctx.fillText("+1", barX + barW, barY + 40);
+    ctx.textAlign = 'left';
 }
 drawAngleDetail();
 
@@ -1920,23 +2227,30 @@ drawAngleDetail();
 // SLIDE 7: FEM CALCULATOR
 // ═══════════════════════════════════════════════
 function updateFEMCalc() {
-    let phi1 = parseFloat(document.getElementById('rPhi1').value);
-    let phi2 = parseFloat(document.getElementById('rPhi2').value);
-    let dt = parseFloat(document.getElementById('rDt').value);
-    let N = parseInt(document.getElementById('rNfem').value);
+    // 1. Obtener valores de los inputs manuales
+    let phi1 = parseFloat(document.getElementById('nPhi1').value);
+    let phi2 = parseFloat(document.getElementById('nPhi2').value);
+    let dt = parseFloat(document.getElementById('nDt').value);
+    let N = parseFloat(document.getElementById('nNfem').value);
     
-    document.getElementById('lPhi1').textContent = phi1.toFixed(1);
-    document.getElementById('lPhi2').textContent = phi2.toFixed(1);
-    document.getElementById('lDt').textContent = dt.toFixed(1);
-    document.getElementById('lNfem').textContent = N;
+    // 2. Validación para evitar errores si los campos están vacíos
+    if (isNaN(phi1)) phi1 = 0;
+    if (isNaN(phi2)) phi2 = 0;
+    if (isNaN(dt) || dt === 0) dt = 0.1; // Protección contra división por cero
+    if (isNaN(N)) N = 1;
     
+    // 3. Cálculos físicos
     let deltaPhi = phi2 - phi1;
     let fem = -N * deltaPhi / dt;
     
-    document.getElementById('deltaPhiVal').textContent = deltaPhi.toFixed(2);
-    document.getElementById('femResult').textContent = fem.toFixed(3) + ' V';
-    document.getElementById('femResult').style.color = fem >= 0 ? '#4ade80' : '#f87171';
+    // 4. Mostrar RESULTADOS con 5 decimales
+    document.getElementById('deltaPhiVal').textContent = deltaPhi.toFixed(5);
     
+    const resEl = document.getElementById('femResult');
+    resEl.textContent = fem.toFixed(5); // Solo el número, la unidad está en la etiqueta
+    resEl.style.color = fem >= 0 ? '#4ade80' : '#f87171';
+    
+    // 5. Actualizar el medidor visual
     drawFEMGauge(fem);
 }
 
@@ -2271,31 +2585,41 @@ const feedbacks = {
 let quizScores = {};
 
 function checkQ(qNum, answer) {
-    if (quizScores[qNum] !== undefined) return;
+    // 1. ELIMINAMOS LA LÍNEA DE BLOQUEO para permitir reintentos
+    // if (quizScores[qNum] !== undefined) return; <--- ESTA LÍNEA SE QUITA
     
     const options = document.querySelectorAll(`#q${qNum} .quiz-option`);
+    
+    // 2. LIMPIEZA: Quitamos colores anteriores para que no se mezclen al cambiar de opción
+    options.forEach(opt => opt.classList.remove('correct', 'wrong'));
+
     const correct = correctAnswers[qNum];
     const optLetters = ['a', 'b', 'c', 'd'];
     
     options.forEach((opt, i) => {
+        // Siempre mostramos cuál es la correcta (pedagógico)
         if (optLetters[i] === correct) opt.classList.add('correct');
+        // Si la que elegiste ahora es incorrecta, la marcamos en rojo
         else if (optLetters[i] === answer) opt.classList.add('wrong');
     });
     
+    // Actualizamos el texto de retroalimentación (feedback)
     const fb = document.getElementById(`fb${qNum}`);
     fb.textContent = feedbacks[qNum][answer];
     fb.style.display = 'block';
+    // Estilos dinámicos según si acertaste o no
     fb.style.background = answer === correct ? '#f0fdf4' : '#fff1f2';
     fb.style.color = answer === correct ? '#065f46' : '#881337';
-    fb.style.padding = '12px 16px';
-    fb.style.borderRadius = '10px';
     fb.style.border = `2px solid ${answer === correct ? '#10b981' : '#ef4444'}`;
     
+    // Actualizamos el puntaje (sobrescribe el anterior)
     quizScores[qNum] = answer === correct ? 1 : 0;
     
+    // Recalculamos el total
     let total = Object.values(quizScores).reduce((a, b) => a + b, 0);
     let answered = Object.keys(quizScores).length;
     
+    // Si ya interactuaste con las 4 preguntas, mostramos el resultado final
     if (answered === 4) {
         const score = document.getElementById('quizScore');
         score.style.display = 'block';
@@ -2314,108 +2638,223 @@ function checkQ(qNum, answer) {
 // SLIDE 2: MAGNET PREV ANIMATION
 // ═══════════════════════════════════════════════
 let magnetPrevT = 0;
+
 function drawMagnetPrev() {
+    // 1. Verificación de seguridad para no consumir recursos si no se ve
+    if (current !== 2) return;
+
     const c = document.getElementById('cMagnetPrev');
     if (!c) return;
     const ctx = c.getContext('2d');
     const W = c.width, H = c.height;
+    
+    // 2. Limpiar y Fondo
     ctx.clearRect(0, 0, W, H);
-    ctx.fillStyle = '#1e293b';
+    ctx.fillStyle = '#0f172a'; // Fondo oscuro que combina con tu tema
     ctx.fillRect(0, 0, W, H);
     
-    magnetPrevT += 0.015;
+    magnetPrevT -= 0.02; // Velocidad de flujo (negativo para ir de N a S)
     
-    // Draw magnet body
-    const mx = W/2 - 60, my = H/2 - 18;
-    ctx.fillStyle = '#334155'; ctx.beginPath();
-    ctx.roundRect(mx, my, 60, 36, 6); ctx.fill();
-    ctx.fillStyle = '#ef4444'; ctx.beginPath();
-    ctx.roundRect(mx + 60, my, 60, 36, 6); ctx.fill();
-    ctx.fillStyle = 'white'; ctx.font = 'bold 18px Arial';
-    ctx.textAlign = 'center';
-    ctx.fillText('S', mx + 30, my + 24);
-    ctx.fillText('N', mx + 90, my + 24);
+    // Dimensiones del imán
+    const mw = 120; // Ancho
+    const mh = 40;  // Alto
+    const mx = (W - mw) / 2; // Centrado X
+    const my = (H - mh) / 2; // Centrado Y
+
+    // 3. DIBUJAR LÍNEAS DE CAMPO (Curvas de Bezier)
+    ctx.save();
+    // Creamos un "clip" para que las líneas no se dibujen ENCIMA del imán
+    ctx.beginPath();
+    ctx.rect(0, 0, W, H);       // Todo el canvas
+    ctx.rect(mx, my, mw, mh);   // Menos el imán
+    ctx.clip("evenodd");
+
+    const lines = 6; // Número de capas de líneas
     
-    // Field lines
-    const numLines = 7;
-    for (let i = 0; i < numLines; i++) {
-        let t2 = i / (numLines - 1);
-        let startY = H/2 - 30 + t2 * 60;
-        let phase = magnetPrevT + i * 0.4;
-        let alpha = 0.3 + 0.5 * Math.abs(Math.sin(phase * 0.5));
-        ctx.strokeStyle = `rgba(6,182,212,${alpha})`;
-        ctx.lineWidth = 2.5;
-        ctx.beginPath();
-        ctx.moveTo(mx + 120, startY);
-        let cpx = mx + 180 + Math.sin(phase) * 8;
-        let cpy = startY - 40 + i * 10;
-        ctx.bezierCurveTo(cpx, cpy, cpx + 60, cpy, W - 10, H/2);
-        ctx.stroke();
+    for (let i = 1; i <= lines; i++) {
+        let expansion = i * 25; // Qué tan lejos van las líneas
         
-        // Arrow on line
-        let ax = W - 50;
-        let ay = H/2 + (startY - H/2) * 0.3;
-        ctx.fillStyle = `rgba(6,182,212,${alpha})`;
-        ctx.beginPath();
-        ctx.arc(ax, ay, 4, 0, Math.PI*2); ctx.fill();
+        // Dibujamos espejo: arriba (-1) y abajo (1)
+        for (let side = -1; side <= 1; side += 2) {
+            if (side === 0) continue;
+
+            // Puntos de control para la curva Bezier
+            let startX = mx + mw;   // Polo Norte (Derecha)
+            let startY = my + mh/2; // Centro Y
+            
+            let endX = mx;          // Polo Sur (Izquierda)
+            let endY = my + mh/2;   // Centro Y
+
+            let cp1x = mx + mw + expansion; 
+            let cp1y = my + mh/2 + (side * expansion * 1.5);
+            
+            let cp2x = mx - expansion; 
+            let cp2y = my + mh/2 + (side * expansion * 1.5);
+
+            // A. Dibujar la línea estática
+            ctx.beginPath();
+            ctx.moveTo(startX, startY);
+            ctx.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, endX, endY);
+            ctx.strokeStyle = `rgba(6, 182, 212, ${0.15 + (lines-i)/10})`; // Cyan con transparencia
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            // B. Animar partícula (Flujo N -> S)
+            // Calculamos la posición t en la curva (0 a 1)
+            // Usamos el tiempo global + un desfase por línea 'i'
+            let t = (Math.abs(magnetPrevT) + i * 0.15) % 1;
+            
+            // Ecuación matemática de Bezier Cúbica para encontrar el punto (x,y)
+            let u = 1 - t;
+            let tt = t * t;
+            let uu = u * u;
+            let uuu = uu * u;
+            let ttt = tt * t;
+
+            let px = uuu * startX + 3 * uu * t * cp1x + 3 * u * tt * cp2x + ttt * endX;
+            let py = uuu * startY + 3 * uu * t * cp1y + 3 * u * tt * cp2y + ttt * endY;
+
+            // Dibujar la partícula brillante
+            ctx.beginPath();
+            ctx.arc(px, py, 3, 0, Math.PI * 2);
+            ctx.fillStyle = '#22d3ee'; // Cyan brillante
+            ctx.fill();
+        }
     }
+    ctx.restore(); // Quitamos el clip
+
+    // 4. DIBUJAR EL IMÁN (Por encima de las líneas)
+    // Polo SUR (Izquierda - Gris Oscuro/Azulado)
+    ctx.fillStyle = '#334155'; 
+    ctx.beginPath();
+    ctx.roundRect(mx, my, mw/2, mh, [5, 0, 0, 5]); // Bordes redondeados izquierda
+    ctx.fill();
     
-    // Labels
-    ctx.fillStyle = '#60a5fa'; ctx.font = '13px Nunito'; ctx.textAlign = 'left';
-    ctx.fillText('Líneas de campo magnético →', mx + 125, H - 12);
+    // Polo NORTE (Derecha - Rojo)
+    ctx.fillStyle = '#ef4444';
+    ctx.beginPath();
+    ctx.roundRect(mx + mw/2, my, mw/2, mh, [0, 5, 5, 0]); // Bordes redondeados derecha
+    ctx.fill();
+
+    // Texto S y N
+    ctx.fillStyle = 'white';
+    ctx.font = 'bold 20px "Fredoka One", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
     
-    if (current === 2) requestAnimationFrame(drawMagnetPrev);
+    ctx.fillText('S', mx + mw/4, my + mh/2 + 2);
+    ctx.fillText('N', mx + mw*0.75, my + mh/2 + 2);
+
+    // Loop de animación
+    requestAnimationFrame(drawMagnetPrev);
 }
 
 // ═══════════════════════════════════════════════
 // SLIDE 3: CURRENT + MAGNETIC FIELD
 // ═══════════════════════════════════════════════
 let currentMagT = 0;
+
 function drawCurrentMag() {
+    // 1. Verificación de seguridad (Slide 3 es la cuarta pantalla, id="slide3")
+    if (current !== 3) return;
+
     const c = document.getElementById('cCurrentMag');
     if (!c) return;
     const ctx = c.getContext('2d');
     const W = c.width, H = c.height;
+    
+    // 2. Limpiar y Fondo
     ctx.clearRect(0, 0, W, H);
-    ctx.fillStyle = '#1e293b'; ctx.fillRect(0, 0, W, H);
+    ctx.fillStyle = '#1e293b'; 
+    ctx.fillRect(0, 0, W, H);
     
-    currentMagT += 0.02;
-    const I = parseInt(document.getElementById('rCurrentPrev') ? document.getElementById('rCurrentPrev').value : 5);
+    // Obtener valor de corriente (I) del slider
+    const slider = document.getElementById('rCurrentPrev');
+    const I = slider ? parseInt(slider.value) : 5;
     
-    // Wire
-    ctx.strokeStyle = '#f59e0b'; ctx.lineWidth = 8;
-    ctx.beginPath(); ctx.moveTo(W/2, 10); ctx.lineTo(W/2, H-10); ctx.stroke();
-    ctx.fillStyle = '#fde047'; ctx.font = 'bold 14px Nunito'; ctx.textAlign = 'center';
-    ctx.fillText('⬇ I = ' + I + ' A', W/2, H - 15);
+    // Velocidad de animación: A más corriente, giran más rápido
+    // El factor base 0.02 asegura movimiento incluso con I baja
+    currentMagT += 0.02 + (I * 0.005); 
     
-    // Circular field lines
+    // 3. DIBUJAR EL CABLE (Centro - Vista Superior)
+    // Representación: Círculo con una "X" (Corriente entrando a la pantalla)
+    ctx.fillStyle = '#f59e0b'; // Naranja cable
+    ctx.beginPath();
+    ctx.arc(W/2, H/2, 18, 0, Math.PI*2); // Cable central
+    ctx.fill();
+    
+    // Dibujar la "X" (Notación física estándar para vector entrando)
+    ctx.strokeStyle = '#78350f';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    // Línea 1 de la X
+    ctx.moveTo(W/2 - 8, H/2 - 8);
+    ctx.lineTo(W/2 + 8, H/2 + 8);
+    // Línea 2 de la X
+    ctx.moveTo(W/2 + 8, H/2 - 8);
+    ctx.lineTo(W/2 - 8, H/2 + 8);
+    ctx.stroke();
+
+    // Etiqueta del cable
+    ctx.fillStyle = '#fde047'; 
+    ctx.font = 'bold 14px Nunito'; 
+    ctx.textAlign = 'center';
+    ctx.fillText(`I = ${I} A`, W/2, H/2 + 38);
+    
+    // 4. DIBUJAR CAMPO MAGNÉTICO (Anillos concéntricos)
+    // Según la regla de la mano derecha: Si I entra (pulgar), B gira horario (dedos)
+    
     const maxR = 140;
-    const spacing = 25;
-    for (let r = spacing; r <= maxR; r += spacing) {
-        let intensity = I / 10;
-        let alpha = (0.8 - r/maxR) * intensity + 0.15;
-        ctx.strokeStyle = `rgba(6,182,212,${alpha})`;
+    const spacing = 25; // Espacio entre anillos
+    
+    for (let r = 35; r <= maxR; r += spacing) {
+        // La intensidad (opacidad) depende de la corriente I
+        // I alto = líneas más brillantes. La intensidad decae con la distancia r.
+        let intensity = (I / 10) * (1 - r/(maxR+40)); 
+        let alpha = Math.max(0.1, intensity + 0.1); // Mínimo 0.1 para que siempre se vea algo
+
+        // A. Dibujar el anillo de campo
+        ctx.strokeStyle = `rgba(6,182,212,${alpha})`; // Cyan con transparencia variable
         ctx.lineWidth = 2;
-        ctx.beginPath(); ctx.arc(W/2, H/2, r, 0, Math.PI*2); ctx.stroke();
+        ctx.beginPath(); 
+        ctx.arc(W/2, H/2, r, 0, Math.PI*2); 
+        ctx.stroke();
         
-        // Moving dot on line
-        let angle = currentMagT * 1.5 + r * 0.05;
-        let dx = W/2 + r * Math.cos(angle);
-        let dy = H/2 + r * Math.sin(angle);
-        ctx.fillStyle = `rgba(6,182,212,${alpha + 0.2})`;
-        ctx.beginPath(); ctx.arc(dx, dy, 5, 0, Math.PI*2); ctx.fill();
+        // B. Partícula orbitando (Visualizar el flujo y dirección)
+        // Ángulo actual + desfase según el radio (r*0.1) para que no giren alineadas
+        let angle = currentMagT + (r * 0.1); 
         
-        // Arrow indicating direction
-        let ang2 = angle + Math.PI/2;
-        let ax = dx + 10 * Math.cos(ang2);
-        let ay = dy + 10 * Math.sin(ang2);
-        ctx.beginPath(); ctx.moveTo(dx, dy); ctx.lineTo(ax, ay); ctx.stroke();
+        let px = W/2 + r * Math.cos(angle);
+        let py = H/2 + r * Math.sin(angle);
+        
+        // Dibujar partícula (electrón/indicador de campo)
+        ctx.fillStyle = `rgba(34, 211, 238, ${alpha + 0.4})`; // Cyan brillante
+        ctx.beginPath(); 
+        ctx.arc(px, py, 4, 0, Math.PI*2); 
+        ctx.fill();
+        
+        // C. Flecha de dirección (Tangente al círculo)
+        // Para corriente entrando (X), el campo es HORARIO -> Tangente es +90deg
+        let arrowAng = angle + Math.PI/2;
+        let ax = px + 10 * Math.cos(arrowAng);
+        let ay = py + 10 * Math.sin(arrowAng);
+        
+        ctx.strokeStyle = `rgba(34, 211, 238, ${alpha + 0.6})`;
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(px, py);
+        ctx.lineTo(ax, ay);
+        ctx.stroke();
     }
     
-    ctx.fillStyle = '#94a3b8'; ctx.font = '12px Nunito'; ctx.textAlign = 'left';
-    ctx.fillText('Campo B circular', W/2 + 15, H/2 - 10);
+    // Texto informativo en la esquina
+    ctx.fillStyle = '#94a3b8'; 
+    ctx.font = '12px Nunito'; 
+    ctx.textAlign = 'left';
+    ctx.fillText('Vista Superior: I entra ⊗, B gira ↻', 15, 20);
     
-    if (current === 3) requestAnimationFrame(drawCurrentMag);
+    // Loop de animación
+    requestAnimationFrame(drawCurrentMag);
 }
 
 window.onload = () => {

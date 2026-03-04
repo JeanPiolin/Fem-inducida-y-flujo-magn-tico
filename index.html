@@ -1330,7 +1330,7 @@
                         <b>Caso 3: Superficie no plana</b><br>
                         Para superficies curvas, se integra:<br>
                         \[\Phi_B = \iint_S \vec{B} \cdot d\vec{A}\]
-                        (Cálculo avanzado — nivel universitario superior. En tu tema: superficie plana siempre.)
+                        (Cálculo avanzado — nivel universitario superior. En este tema: superficie plana siempre.)
                     </div>
                 </div>
             </div>
@@ -1879,73 +1879,135 @@ function drawFluxConcept() {
     if (!c) return;
     const ctx = c.getContext('2d');
     const W = c.width, H = c.height;
+    
+    // 1. Limpiar y Configuración
     ctx.clearRect(0, 0, W, H);
-    
-    let theta = fluxAngle * Math.PI / 180;
-    let cosT = Math.cos(theta);
-    
-    // Background
-    ctx.fillStyle = '#f8fafc';
+    ctx.fillStyle = '#f8fafc'; // Fondo limpio
     ctx.fillRect(0, 0, W, H);
     
-    // Field lines (horizontal, going right)
-    for (let i = 0; i < 8; i++) {
-        let y = 30 + i * 37;
-        ctx.strokeStyle = '#06b6d4';
-        ctx.lineWidth = 2.5;
-        ctx.setLineDash([]);
-        ctx.beginPath(); ctx.moveTo(10, y); ctx.lineTo(W - 10, y); ctx.stroke();
-        drawArrow(ctx, W - 60, y, W - 10, y, 8);
-    }
+    // Leer el valor del slider (0° a 90°)
+    // 0° = Normal paralela al campo (Flujo Máximo)
+    // 90° = Normal perpendicular al campo (Flujo Cero)
+    let sliderVal = document.getElementById('rFluxAngle').value;
+    let angleDeg = parseInt(sliderVal);
+    let theta = angleDeg * Math.PI / 180;
+    let cosT = Math.cos(theta); // Factor de reducción (1.0 a 0.0)
     
-    // The loop (ellipse in perspective)
-    ctx.save();
-    ctx.translate(W/2, H/2);
+    // Centro del canvas
+    const cx = W / 2;
+    const cy = H / 2;
     
-    let apparentW = 70 * Math.abs(cosT);
-    let apparentH = 100;
+    // 2. Dibujar Líneas de Campo (Estáticas, horizontales)
+    const numLines = 8;
+    const spacing = 35; // Espacio entre líneas
+    // Centramos el bloque de líneas verticalmente
+    const totalFieldH = (numLines - 1) * spacing;
+    const startY = (H - totalFieldH) / 2;
     
-    // Count lines that "enter" the loop
-    let linesEntering = 0;
-    for (let i = 0; i < 8; i++) {
-        let y = 30 + i * 37 - H/2;
-        if (Math.abs(y) < apparentH) {
-            linesEntering++;
-            ctx.strokeStyle = '#3b82f6';
-            ctx.lineWidth = 4;
-            ctx.beginPath();
-            ctx.moveTo(-W/2, y); ctx.lineTo(W/2, y); ctx.stroke();
-        }
-    }
+    let linesCaught = 0; // Contador de líneas capturadas
     
-    // Draw loop
-    ctx.strokeStyle = theta > 1.4 ? '#ef4444' : '#f59e0b';
-    ctx.lineWidth = 5;
-    if (apparentW < 3) {
-        ctx.beginPath(); ctx.moveTo(0, -apparentH); ctx.lineTo(0, apparentH); ctx.stroke();
-    } else {
+    // Calculamos la altura visual de la espira
+    // Al girar, la espira se ve más "plana" verticalmente
+    const loopRadius = 130; 
+    const projH = loopRadius * Math.abs(cosT); // Altura proyectada
+    
+    for (let i = 0; i < numLines; i++) {
+        let y = startY + i * spacing;
+        
+        // ¿Esta línea pasa por dentro de la espira?
+        // Comparamos su posición Y con la altura actual de la espira
+        let isCaught = Math.abs(y - cy) <= projH;
+        
+        if (isCaught) linesCaught++;
+        
+        // Dibujo de la línea
         ctx.beginPath();
-        ctx.ellipse(0, 0, apparentW, apparentH, 0, 0, Math.PI * 2);
+        ctx.moveTo(20, y);
+        ctx.lineTo(W - 20, y);
+        
+        // Estilo visual: Azul brillante si entra, gris claro si pasa de largo
+        ctx.strokeStyle = isCaught ? '#06b6d4' : '#cbd5e1'; 
+        ctx.lineWidth = isCaught ? 3 : 2;
+        ctx.stroke();
+        
+        // Flechas al final para indicar dirección
+        ctx.beginPath();
+        ctx.moveTo(W - 25, y - 5); ctx.lineTo(W - 20, y); ctx.lineTo(W - 25, y + 5);
         ctx.stroke();
     }
     
-    // Normal vector
-    if (apparentW > 5) {
-        ctx.strokeStyle = '#ef4444'; ctx.lineWidth = 2;
-        ctx.setLineDash([5, 4]);
-        ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(70 * Math.sin(theta), -50); ctx.stroke();
-        ctx.setLineDash([]);
-        ctx.fillStyle = '#ef4444';
-        ctx.font = 'bold 14px JetBrains Mono';
-        ctx.fillText('n̂', 70 * Math.sin(theta) + 5, -50);
+    // 3. Dibujar la Espira (Elipse Naranja)
+    ctx.save();
+    ctx.translate(cx, cy);
+    
+    ctx.strokeStyle = '#f59e0b'; // Naranja
+    ctx.lineWidth = 6;
+    ctx.beginPath();
+    
+    // Dibujamos la elipse con altura variable según el ángulo
+    // Radio X fijo (80), Radio Y variable (projH)
+    if (projH < 2) {
+        ctx.moveTo(-80, 0); ctx.lineTo(80, 0); // Línea plana si está a 90°
+    } else {
+        ctx.ellipse(0, 0, 80, projH, 0, 0, Math.PI * 2);
+    }
+    ctx.stroke();
+    
+    // 4. Vector Normal (n) y Ángulo
+    // La normal gira de Horizontal (0°) a Vertical (90°)
+    const normalLen = 80;
+    let nx = normalLen * Math.cos(theta);
+    let ny = -normalLen * Math.sin(theta); // Hacia arriba
+    
+    // Línea punteada roja (Normal)
+    ctx.strokeStyle = '#ef4444';
+    ctx.lineWidth = 3;
+    ctx.setLineDash([5, 4]); 
+    ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(nx, ny); ctx.stroke();
+    ctx.setLineDash([]);
+    
+    // Etiqueta 'n'
+    ctx.fillStyle = '#ef4444';
+    ctx.font = 'bold 18px Nunito';
+    ctx.fillText('n̂', nx + 8, ny);
+    
+    // Dibujar el arco del ángulo si no es 0
+    if (angleDeg > 5) {
+        ctx.beginPath();
+        ctx.strokeStyle = '#ef4444';
+        ctx.lineWidth = 2;
+        ctx.arc(0, 0, 40, 0, -theta, true);
+        ctx.stroke();
+        
+        // Texto del ángulo
+        let midTh = -theta / 2;
+        ctx.fillText('θ', 50 * Math.cos(midTh), 50 * Math.sin(midTh));
     }
     
     ctx.restore();
     
-    // Label lines entering
+    // 5. Textos Informativos Actualizados
+    
+    // Contador visual en el canvas
     ctx.fillStyle = '#1e293b';
-    ctx.font = 'bold 14px Nunito';
-    ctx.fillText(`Líneas capturadas: ${linesEntering} / 8`, 10, H - 10);
+    ctx.font = 'bold 16px Nunito';
+    ctx.textAlign = 'left';
+    ctx.fillText(`Líneas capturadas: ${linesCaught} / ${numLines}`, 20, H - 20);
+    
+    // Actualizar elementos HTML externos
+    const cosEl = document.getElementById('cosVal');
+    const fluxEl = document.getElementById('fluxConceptVal');
+    const angEl = document.getElementById('lFluxAngle');
+    
+    if (cosEl) cosEl.textContent = cosT.toFixed(3);
+    if (angEl) angEl.textContent = angleDeg + '°';
+    if (fluxEl) {
+        // Porcentaje matemático exacto
+        let pct = (cosT * 100).toFixed(0);
+        fluxEl.textContent = `${pct}%`;
+        // Color semáforo: Verde (alto) -> Rojo (bajo)
+        fluxEl.style.color = pct > 50 ? '#4ade80' : (pct > 0 ? '#facc15' : '#f87171');
+    }
 }
 drawFluxConcept();
 
